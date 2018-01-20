@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AaronCottrillSpyStore.DAL", "AaronCottrillSpyStore.DAL\AaronCottrillSpyStore.DAL.csproj", "{5715F1E5-C097-4367-A65A-5AFC02862B04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AaronCottrillSpyStore.Models", "AaronCottrillSpyStore.Models\AaronCottrillSpyStore.Models.csproj", "{A5AF91F4-BD0C-4227-974F-272B1684ECE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AaronCottrillSpyStore.DAL.Tests", "AaronCottrillSpyStore.DAL.Tests\AaronCottrillSpyStore.DAL.Tests.csproj", "{89CCBA9E-7134-4A54-8613-A87C715A8D61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5715F1E5-C097-4367-A65A-5AFC02862B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5715F1E5-C097-4367-A65A-5AFC02862B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5715F1E5-C097-4367-A65A-5AFC02862B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AF91F4-BD0C-4227-974F-272B1684ECE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AF91F4-BD0C-4227-974F-272B1684ECE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AF91F4-BD0C-4227-974F-272B1684ECE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AF91F4-BD0C-4227-974F-272B1684ECE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89CCBA9E-7134-4A54-8613-A87C715A8D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CCBA9E-7134-4A54-8613-A87C715A8D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CCBA9E-7134-4A54-8613-A87C715A8D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CCBA9E-7134-4A54-8613-A87C715A8D61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
