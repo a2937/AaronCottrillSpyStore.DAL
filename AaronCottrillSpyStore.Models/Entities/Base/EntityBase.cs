@@ -9,7 +9,7 @@ namespace AaronCottrillSpyStore.Models.Entities.Base
    public abstract class EntityBase
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Timestamp]
         public byte[] TimeStamp { get; set; }

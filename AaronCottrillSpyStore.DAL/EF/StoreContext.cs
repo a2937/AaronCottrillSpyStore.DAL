@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AaronCottrillSpyStore.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AaronCottrillSpyStore.DAL.EF
 {
-    class StoreContext : DbContext
+    public class StoreContext : DbContext
     {
         public StoreContext()
         {
@@ -24,5 +25,7 @@ namespace AaronCottrillSpyStore.DAL.EF
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=SpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;",options => options.ExecutionStrategy(c => new MyExecutionStrategy(c)));
             }
         }
+
+        public virtual DbSet<Category> Categories { get; set; }
     }
 }
