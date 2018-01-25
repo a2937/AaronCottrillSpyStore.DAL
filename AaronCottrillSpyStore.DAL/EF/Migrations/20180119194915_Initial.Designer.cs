@@ -20,6 +20,24 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 #pragma warning restore 612, 618
+
+            modelBuilder.Entity("SpyStore.Models.Entities.Category", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<string>("CategoryName")
+                    .HasMaxLength(50);
+
+                b.Property<byte[]>("TimeStamp")
+                    .IsConcurrencyToken()
+                    .ValueGeneratedOnAddOrUpdate();
+
+                b.HasKey("Id");
+
+                b.ToTable("Categories", "Store");
+            });
         }
     }
 }

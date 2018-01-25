@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AaronCottrillSpyStore.DAL.Tests.ContextTests
 {
-    [Collection("SpyStore.DAL")]
+    [Collection("AaronCottrillSpyStore.DAL")]
     public class CategoryTests : IDisposable
     {
         private readonly StoreContext _db;
@@ -140,5 +140,4 @@ namespace AaronCottrillSpyStore.DAL.Tests.ContextTests
             Assert.Equal(category.Id, ((Category)ex.Entries[0].Entity).Id);
         }
     }
-}
 }
