@@ -15,7 +15,6 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
-#pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -23,7 +22,9 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
             modelBuilder.Entity("AaronCottrillSpyStore.Models.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        
 
                     b.Property<string>("CategoryName")
                         .HasMaxLength(50);
@@ -36,7 +37,6 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
 
                     b.ToTable("Categories","Store");
                 });
-#pragma warning restore 612, 618
         }
     }
 }

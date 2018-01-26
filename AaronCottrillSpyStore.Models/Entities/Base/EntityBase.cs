@@ -6,9 +6,9 @@ using System.Text;
 
 namespace AaronCottrillSpyStore.Models.Entities.Base
 {
-   public abstract class EntityBase
+    public abstract class EntityBase
     {
-        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Timestamp]

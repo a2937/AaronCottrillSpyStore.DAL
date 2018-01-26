@@ -13,18 +13,18 @@ namespace AaronCottrillSpyStore.DAL.Tests.ContextTests
     public class CategoryTests : IDisposable
     {
         private readonly StoreContext _db;
-        
+
         public CategoryTests()
         {
             _db = new StoreContext();
             CleanDatabase();
         }
+
         public void Dispose()
         {
             CleanDatabase();
-           _db.Dispose();
+            _db.Dispose();
         }
-
         private void CleanDatabase()
         {
             _db.Database.ExecuteSqlCommand("Delete from Store.Categories");

@@ -11,10 +11,9 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
 {
     public abstract class RepoBase<T> : IDisposable, IRepo<T> where T : EntityBase, new()
     {
-        protected readonly StoreContext Db;
         protected DbSet<T> Table;
-        bool disposed = false;
         public StoreContext Context => Db;
+
         public bool HasChanges => Db.ChangeTracker.HasChanges();
 
         public int Count => Table.Count();
@@ -25,11 +24,7 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
 
         public virtual IEnumerable<T> GetAll() => Table;
 
-        internal IEnumerable<T> GetRange(IQueryable<T> query, int skip, int take)
-            => query.Skip(skip).Take(take);
-        public virtual IEnumerable<T> GetRange(int skip, int take)
-            => GetRange(Table, skip, take);
-
+        protected readonly StoreContext Db;
         protected RepoBase()
         {
             Db = new StoreContext();
@@ -40,53 +35,14 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
             Db = new StoreContext(options);
             Table = Db.Set<T>();
         }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        public virtual void Dispose(bool disposing)
-        {
-            if(disposed)
-            {
-                return;
-            }
-            if(disposing)
-            {
-                // Free any other managed objects here.
-                //
-            }
-            Db.Dispose();
-            disposed = true;
-        }
 
-        public int SaveChanges()
-        {
-            try
-            {
-                return Db.SaveChanges();
-            }
-            catch(DbUpdateConcurrencyException ex)
-            {
-                //A concurrency error orred
-                // Should handle intelligently
-                Console.WriteLine(ex);
-                throw;
-            }
-            catch(RetryLimitExceededException ex)
-            {
-                //DbResiliency retry limit exceeded
-                //Should handle intelligently
-                Console.WriteLine(ex);
-                throw;
-            }
-            catch(Exception ex)
-            {
-                //Should handle intelligently
-                Console.WriteLine(ex);
-                throw;
-            }
-        }
+      
+
+        internal IEnumerable<T> GetRange(IQueryable<T> query, int skip, int take)
+            => query.Skip(skip).Take(take);
+        public virtual IEnumerable<T> GetRange(int skip, int take)
+            => GetRange(Table, skip, take);
+
         public virtual int Add(T entity, bool persist = true)
         {
             Table.Add(entity);
@@ -102,9 +58,9 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
             Table.Update(entity);
             return persist ? SaveChanges() : 0;
         }
-        public virtual int UpdateRange(IEnumerable<T> entity, bool persist = true)
+        public virtual int UpdateRange(IEnumerable<T> entities, bool persist = true)
         {
-            Table.UpdateRange(entity);
+            Table.UpdateRange(entities);
             return persist ? SaveChanges() : 0;
         }
         public virtual int Delete(T entity, bool persist = true)
@@ -118,6 +74,14 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
             return persist ? SaveChanges() : 0;
         }
 
+        internal T GetEntryFromChangeTracker(int? id)
+        {
+            return Db.ChangeTracker.Entries<T>()
+                .Select((EntityEntry e) => (T)e.Entity)
+                    .FirstOrDefault(x => x.Id == id);
+        }
+
+        //TODO: Check For Cascade Delete
         public int Delete(int id, byte[] timeStamp, bool persist = true)
         {
             var entry = GetEntryFromChangeTracker(id);
@@ -133,10 +97,56 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
             return persist ? SaveChanges() : 0;
         }
 
-        internal T GetEntryFromChangeTracker(int? id)
+        public int SaveChanges()
         {
-            return Db.ChangeTracker.Entries<T>().Select((EntityEntry e) => (T)e.Entity).
-            FirstOrDefault(x => x.Id == id);
+            try
+            {
+                return Db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                //A concurrency error occurred
+                //Should handle intelligently
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (RetryLimitExceededException ex)
+            {
+                //DbResiliency retry limit exceeded
+                //Should handle intelligently
+                Console.WriteLine(ex);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                //Should handle intelligently
+                Console.WriteLine(ex);
+                throw;
+                //-2146232060
+                //throw new Exception($"{ex.HResult}");
+            }
+        }
+
+        bool _disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                // Free any other managed objects here. 
+                //
+            }
+            Db.Dispose();
+            _disposed = true;
         }
     }
 }

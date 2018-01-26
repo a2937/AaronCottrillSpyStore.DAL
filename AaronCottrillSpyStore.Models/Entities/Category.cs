@@ -7,10 +7,10 @@ using System.Text;
 
 namespace AaronCottrillSpyStore.Models.Entities
 {
-    [Table("Categories",Schema = "Store")]
+    [Table("Categories", Schema = "Store")]
     public class Category : EntityBase
     {
-        [DataType(DataType.Text),MaxLength(50)]
+        [DataType(DataType.Text), MaxLength(50)]
         public string CategoryName { get; set; }
 
     }

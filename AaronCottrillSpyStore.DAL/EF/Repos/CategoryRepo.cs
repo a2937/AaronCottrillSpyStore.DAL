@@ -12,18 +12,14 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos
     {
         public CategoryRepo(DbContextOptions<StoreContext> options) : base(options)
         {
-
         }
-
         public CategoryRepo()
         {
-
         }
-
         public override IEnumerable<Category> GetAll()
             => Table.OrderBy(x => x.CategoryName);
 
         public override IEnumerable<Category> GetRange(int skip, int take)
-           => GetRange(Table.OrderBy(x => x.CategoryName), skip, take);
+            => GetRange(Table.OrderBy(x => x.CategoryName), skip, take);
     }
 }
