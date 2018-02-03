@@ -14,5 +14,6 @@ namespace AaronCottrillSpyStore.Models.Entities
         public string CategoryName { get; set; }
 
         [InverseProperty(nameof(Product.Category))]
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

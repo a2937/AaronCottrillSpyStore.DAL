@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AaronCottrillSpyStore.DAL", "AaronCottrillSpyStore.DAL\AaronCottrillSpyStore.DAL.csproj", "{5715F1E5-C097-4367-A65A-5AFC02862B04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AaronCottrillSpyStore.DAL", "AaronCottrillSpyStore.DAL\AaronCottrillSpyStore.DAL.csproj", "{5715F1E5-C097-4367-A65A-5AFC02862B04}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5AF91F4-BD0C-4227-974F-272B1684ECE8} = {A5AF91F4-BD0C-4227-974F-272B1684ECE8}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AaronCottrillSpyStore.Models", "AaronCottrillSpyStore.Models\AaronCottrillSpyStore.Models.csproj", "{A5AF91F4-BD0C-4227-974F-272B1684ECE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AaronCottrillSpyStore.Models", "AaronCottrillSpyStore.Models\AaronCottrillSpyStore.Models.csproj", "{A5AF91F4-BD0C-4227-974F-272B1684ECE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AaronCottrillSpyStore.DAL.Tests", "AaronCottrillSpyStore.DAL.Tests\AaronCottrillSpyStore.DAL.Tests.csproj", "{89CCBA9E-7134-4A54-8613-A87C715A8D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AaronCottrillSpyStore.DAL.Tests", "AaronCottrillSpyStore.DAL.Tests\AaronCottrillSpyStore.DAL.Tests.csproj", "{89CCBA9E-7134-4A54-8613-A87C715A8D61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5715F1E5-C097-4367-A65A-5AFC02862B04} = {5715F1E5-C097-4367-A65A-5AFC02862B04}
+		{A5AF91F4-BD0C-4227-974F-272B1684ECE8} = {A5AF91F4-BD0C-4227-974F-272B1684ECE8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

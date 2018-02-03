@@ -29,4 +29,3 @@ namespace AaronCottrillSpyStore.Models.Entities
         public Product Product { get; set; }
     }
 }
-}
