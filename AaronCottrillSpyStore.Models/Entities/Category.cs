@@ -13,5 +13,6 @@ namespace AaronCottrillSpyStore.Models.Entities
         [DataType(DataType.Text), MaxLength(50)]
         public string CategoryName { get; set; }
 
+        [InverseProperty(nameof(Product.Category))]
     }
 }
