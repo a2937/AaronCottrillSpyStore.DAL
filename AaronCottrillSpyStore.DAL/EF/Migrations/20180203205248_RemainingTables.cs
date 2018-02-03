@@ -17,8 +17,7 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     EmailAddress = table.Column<string>(maxLength: 50, nullable: false),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: true),
-                    LastName = table.Column<string>(maxLength: 50, nullable: true),
+                    FullName = table.Column<string>(maxLength: 50, nullable: true),
                     Password = table.Column<string>(maxLength: 50, nullable: false),
                     TimeStamp = table.Column<byte[]>(rowVersion: true, nullable: true)
                 },
@@ -68,7 +67,6 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CustomerId = table.Column<int>(nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    OrderTotal = table.Column<decimal>(type: "money", nullable: true, computedColumnSql: "Store.GetOrderTotal([Id])"),
                     ShipDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     TimeStamp = table.Column<byte[]>(rowVersion: true, nullable: true)
                 },
@@ -85,7 +83,7 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoppingCatRecords",
+                name: "ShoppingCartRecords",
                 schema: "Store",
                 columns: table => new
                 {
@@ -100,16 +98,16 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCatRecords", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCartRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ShoppingCatRecords_Customers_CustomerId",
+                        name: "FK_ShoppingCartRecords_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalSchema: "Store",
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShoppingCatRecords_Products_ProductId",
+                        name: "FK_ShoppingCartRecords_Products_ProductId",
                         column: x => x.ProductId,
                         principalSchema: "Store",
                         principalTable: "Products",
@@ -182,21 +180,21 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCatRecords_CustomerId",
+                name: "IX_ShoppingCartRecords_CustomerId",
                 schema: "Store",
-                table: "ShoppingCatRecords",
+                table: "ShoppingCartRecords",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCatRecords_ProductId",
+                name: "IX_ShoppingCartRecords_ProductId",
                 schema: "Store",
-                table: "ShoppingCatRecords",
+                table: "ShoppingCartRecords",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCart",
                 schema: "Store",
-                table: "ShoppingCatRecords",
+                table: "ShoppingCartRecords",
                 columns: new[] { "Id", "ProductId", "CustomerId" },
                 unique: true);
         }
@@ -208,7 +206,7 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                 schema: "Store");
 
             migrationBuilder.DropTable(
-                name: "ShoppingCatRecords",
+                name: "ShoppingCartRecords",
                 schema: "Store");
 
             migrationBuilder.DropTable(

@@ -1,9 +1,7 @@
-﻿using AaronCottrillSpyStore.Models.Entities.Base;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using AaronCottrillSpyStore.Models.Entities.Base;
 
 namespace AaronCottrillSpyStore.Models.Entities
 {
@@ -12,7 +10,6 @@ namespace AaronCottrillSpyStore.Models.Entities
     {
         [DataType(DataType.Text), MaxLength(50)]
         public string CategoryName { get; set; }
-
         [InverseProperty(nameof(Product.Category))]
         public List<Product> Products { get; set; } = new List<Product>();
     }

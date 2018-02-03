@@ -19,7 +19,7 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SpyStore.Models.Entities.Category", b =>
+            modelBuilder.Entity("AaronCottrillSpyStore.Models.Entities.Category", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()

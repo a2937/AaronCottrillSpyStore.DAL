@@ -1,9 +1,7 @@
-﻿using AaronCottrillSpyStore.Models.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using AaronCottrillSpyStore.Models.Entities.Base;
 
-namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
+namespace AaronCottrillSpyStore.DAL.Repos.Base
 {
     public interface IRepo<T> where T : EntityBase
     {
@@ -12,7 +10,7 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
         T Find(int? id);
         T GetFirst();
         IEnumerable<T> GetAll();
-        IEnumerable<T> GetRange(int skip, int take);
+        IEnumerable<T> GetRange(int skip,int take);
         int Add(T entity, bool persist = true);
         int AddRange(IEnumerable<T> entities, bool persist = true);
         int Update(T entity, bool persist = true);

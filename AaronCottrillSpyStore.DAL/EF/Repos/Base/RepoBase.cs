@@ -1,16 +1,30 @@
-﻿using AaronCottrillSpyStore.Models.Entities.Base;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using AaronCottrillSpyStore.DAL.EF;
+using AaronCottrillSpyStore.Models.Entities.Base;
+using System.Linq;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore.Update;
+using AaronCottrillSpyStore.DAL.Repos.Base;
 
-namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
+namespace AaronCottrillSpyStore.DAL.Repos.Base
 {
     public abstract class RepoBase<T> : IDisposable, IRepo<T> where T : EntityBase, new()
     {
+        protected readonly StoreContext Db;
+        protected RepoBase()
+        {
+            Db = new StoreContext();
+            Table = Db.Set<T>();
+        }
+        protected RepoBase(DbContextOptions<StoreContext> options)
+        {
+            Db = new StoreContext(options);
+            Table = Db.Set<T>();
+        }
+
         protected DbSet<T> Table;
         public StoreContext Context => Db;
 
@@ -24,24 +38,10 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos.Base
 
         public virtual IEnumerable<T> GetAll() => Table;
 
-        protected readonly StoreContext Db;
-        protected RepoBase()
-        {
-            Db = new StoreContext();
-            Table = Db.Set<T>();
-        }
-        protected RepoBase(DbContextOptions<StoreContext> options)
-        {
-            Db = new StoreContext(options);
-            Table = Db.Set<T>();
-        }
-
-      
-
         internal IEnumerable<T> GetRange(IQueryable<T> query, int skip, int take)
             => query.Skip(skip).Take(take);
         public virtual IEnumerable<T> GetRange(int skip, int take)
-            => GetRange(Table, skip, take);
+            => GetRange(Table,skip, take);
 
         public virtual int Add(T entity, bool persist = true)
         {

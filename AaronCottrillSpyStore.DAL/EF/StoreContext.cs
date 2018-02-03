@@ -33,18 +33,18 @@ namespace AaronCottrillSpyStore.DAL.EF
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-            @"Server=(localdb)\mssqllocaldb;Database=SpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;");
+            @"Server=(localdb)\mssqllocaldb;Database=AaronCottrillSpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;");
             }
             //if (!optionsBuilder.IsConfigured)
             //{
             //    optionsBuilder.UseSqlServer(
-            //@"Server=(localdb)\mssqllocaldb;Database=SpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;",
+            //@"Server=(localdb)\mssqllocaldb;Database=AaronCottrillSpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;",
             //options => options.ExecutionStrategy(c=>new MyExecutionStrategy(c)));
             //}
             //if (!optionsBuilder.IsConfigured)
             //{
             //    optionsBuilder.UseSqlServer(
-            //@"Server=(localdb)\mssqllocaldb;Database=SpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;",
+            //@"Server=(localdb)\mssqllocaldb;Database=AaronCottrillSpyStore;Trusted_Connection=True;MultipleActiveResultSets=true;",
             //options => options.EnableRetryOnFailure());
             //}
         }

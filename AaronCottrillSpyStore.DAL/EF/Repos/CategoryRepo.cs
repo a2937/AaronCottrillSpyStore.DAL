@@ -1,14 +1,14 @@
-﻿using AaronCottrillSpyStore.DAL.EF.Repos.Base;
-using AaronCottrillSpyStore.Models.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using AaronCottrillSpyStore.DAL.EF;
+using AaronCottrillSpyStore.DAL.Repos.Base;
+using AaronCottrillSpyStore.DAL.Repos.Interfaces;
+using AaronCottrillSpyStore.Models.Entities;
 
-namespace AaronCottrillSpyStore.DAL.EF.Repos
+namespace AaronCottrillSpyStore.DAL.Repos
 {
-    public class CategoryRepo : RepoBase<Category>
+    public class CategoryRepo : RepoBase<Category>, ICategoryRepo
     {
         public CategoryRepo(DbContextOptions<StoreContext> options) : base(options)
         {
@@ -16,10 +16,17 @@ namespace AaronCottrillSpyStore.DAL.EF.Repos
         public CategoryRepo()
         {
         }
-        public override IEnumerable<Category> GetAll()
+        public override IEnumerable<Category> GetAll() 
             => Table.OrderBy(x => x.CategoryName);
 
-        public override IEnumerable<Category> GetRange(int skip, int take)
-            => GetRange(Table.OrderBy(x => x.CategoryName), skip, take);
+        public override IEnumerable<Category> GetRange(int skip, int take) 
+            => GetRange(Table.OrderBy(x => x.CategoryName),skip,take);
+
+        public Category GetOneWithProducts(int? id) 
+            => Table.Include(x => x.Products).FirstOrDefault(x => x.Id == id);
+
+        public IEnumerable<Category> GetAllWithProducts() 
+            => Table.Include(x => x.Products);
+
     }
 }
