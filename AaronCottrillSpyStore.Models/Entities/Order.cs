@@ -10,7 +10,7 @@ namespace AaronCottrillSpyStore.Models.Entities
     public class Order : EntityBase
     {
         public int CustomerId { get; set; }
-        [Display(Name = "Total")]
+        [DataType(DataType.Currency),Display(Name = "Total")]
         public decimal? OrderTotal { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Date Ordered")]

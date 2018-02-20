@@ -4,7 +4,7 @@ using System;
 
 namespace AaronCottrillSpyStore.DAL.EF
 {
-    class MyExecutionStrategy : ExecutionStrategy
+    public class MyExecutionStrategy : ExecutionStrategy
     {
         public MyExecutionStrategy(ExecutionStrategyContext context) :
       base(context, ExecutionStrategy.DefaultMaxRetryCount, ExecutionStrategy.DefaultMaxDelay)

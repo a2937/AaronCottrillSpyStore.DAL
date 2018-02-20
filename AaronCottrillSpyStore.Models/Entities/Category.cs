@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using AaronCottrillSpyStore.Models.Entities.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AaronCottrillSpyStore.Models.Entities.Base;
 
 namespace AaronCottrillSpyStore.Models.Entities
 {
