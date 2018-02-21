@@ -15,11 +15,10 @@ namespace AaronCottrillSpyStore.DAL.EF.Migrations
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ChangeDetector.SkipDetectChanges", "true")
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("ProductVersion", "1.1.0-preview1-22509")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AaronCottrillSpyStore.Models.Entities.Category", b =>
+            modelBuilder.Entity("SpyStore.Models.Entities.Category", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd()

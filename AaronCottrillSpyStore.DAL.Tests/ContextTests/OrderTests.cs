@@ -10,7 +10,7 @@ using Xunit;
 
 namespace AaronCottrillSpyStore.DAL.Tests.Context
 {
-    [Collection("Database Testing")]
+    [Collection("AaronCottrillSpyStore.DAL")]
     public class OrderTests : IDisposable
     {
         private readonly StoreContext _db;
@@ -18,6 +18,7 @@ namespace AaronCottrillSpyStore.DAL.Tests.Context
         public OrderTests()
         {
             _db = new StoreContext();
+            StoreDataInitializer.ClearData(new StoreContext());
             StoreDataInitializer.InitializeData(new StoreContext());
         }
 
