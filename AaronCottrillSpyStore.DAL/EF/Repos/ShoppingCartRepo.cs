@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using AaronCottrillSpyStore.DAL.EF;
@@ -10,6 +9,7 @@ using AaronCottrillSpyStore.DAL.Repos.Base;
 using AaronCottrillSpyStore.DAL.Repos.Interfaces;
 using AaronCottrillSpyStore.Models.Entities;
 using AaronCottrillSpyStore.Models.ViewModels;
+using System.Data.SqlClient;
 
 namespace AaronCottrillSpyStore.DAL.Repos
 {
@@ -58,8 +58,8 @@ namespace AaronCottrillSpyStore.DAL.Repos
         public override int Add(ShoppingCartRecord entity, bool persist = true)
         {
             return Add(entity, _productRepo.Find(entity.ProductId)?.UnitsInStock, persist);
-
         }
+		
         public int Add(ShoppingCartRecord entity, int? quantityInStock, bool persist = true)
         {
             var item = Find(entity.CustomerId, entity.ProductId);
